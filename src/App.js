@@ -2,13 +2,15 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./routes/Home";
 import Detail from "./routes/Detail";
 import React from "react";
+import Navbar from "./components/Navbar";
 
 function App() {
   return (
-    <Router>
+    <Router basename={`${process.env.PUBLIC_URL}/`}>
+      <Navbar />
       <Routes>
+        <Route path="/" element={<Home />} />
         <Route path="/movie/:id" element={<Detail />} />
-        <Route path={`${process.env.PUBLIC_URL}/`} element={<Home />} />
       </Routes>
     </Router>
   );
