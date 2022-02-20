@@ -2,46 +2,27 @@ import { useState, useEffect } from "react";
 import MovieDetail from "../render/MovieDetail";
 import React from "react";
 import Load from "../components/Load";
+import { Group_obj, Group_key_arr } from "../NavList";
+import { Link } from "react-router-dom";
+import Slide from "../components/Slide";
 
 function Home() {
-  const [loading, setLoading] = useState(true);
-  const [movies, setMovies] = useState([]);
-  const getMovies = async () => {
-    // const response = await fetch(
-    //   `https://yts.mx/api/v2/list_movies.json?minimum_rating=9&sort_by=year`
-    // );
-    // const json = await response.json();
-    const json = await (
-      await fetch(
-        `https://yts.mx/api/v2/list_movies.json?minimum_rating=9&sort_by=year`
-      )
-    ).json(); // await를 await로 감싸기
-    setMovies(json.data.movies);
-    setLoading(false);
-  };
-  useEffect(() => {
-    setLoading(true);
-    getMovies();
-  }, []);
-  console.log(movies);
   return (
     <div>
-      {loading ? (
-        <Load />
-      ) : (
-        <div>
-          {movies.map((movie) => (
-            <MovieDetail
-              key={movie.id}
-              id={movie.id}
-              coverImg={movie.medium_cover_image}
-              title={movie.title}
-              summary={movie.summary}
-              genres={movie.genres}
+      {Group_key_arr.map((group) => {
+        return (
+          <div key={group}>
+            <div>
+              <div>
+                <Link to={`/page/${Group_obj[group]}/1`}>{group}</Link>
+              </div>
+            </div>
+            <Slide
+              ytsApi={`https://yts.mx/api/v2/list_movies.json?limit=10&${Group_obj[group]}&sort_by=rating`}
             />
-          ))}
-        </div>
-      )}
+          </div>
+        );
+      })}
     </div>
   );
 }

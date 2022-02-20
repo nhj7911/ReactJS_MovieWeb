@@ -1,6 +1,6 @@
 import { Link, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
-import MovieDetail from "../render/MovieDetail";
+import MovieGroup from "../render/MovieGroup";
 import React from "react";
 import Load from "../components/Load";
 
@@ -11,6 +11,7 @@ function Group() {
   const [loading, setLoading] = useState(true);
   const [movies, setMovies] = useState([]);
 
+  // 그룹별 영화 가져옴
   const getMovies = async () => {
     const json = await (
       await fetch(
@@ -34,13 +35,15 @@ function Group() {
       ) : (
         <div>
           {movies.map((movie) => (
-            <MovieDetail
+            <MovieGroup
               key={movie.id}
               id={movie.id}
               coverImg={movie.medium_cover_image}
               title={movie.title}
+              rating={movie.rating}
+              runtime={movie.runtime}
+              year={movie.year}
               summary={movie.summary}
-              genres={movie.genres}
             />
           ))}
         </div>

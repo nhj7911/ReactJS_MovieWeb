@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Group_obj, Group_key_arr } from "./NavList";
+import { Group_obj, Group_key_arr } from "../NavList";
 import styles from "./Navbar.module.css";
 
 function Navbar() {
