@@ -1,30 +1,71 @@
-import propTypes from "prop-types";
-import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
+import styles from "./MovieDetail.module.css";
 import React from "react";
 
-function MovieDetail({ id, coverImg, title, summary, genres }) {
+function MovieDetail({
+  background_image_original,
+  coverImg,
+  rating,
+  runtime,
+  description_full,
+  title,
+  genres,
+}) {
   return (
-    <div>
-      <img src={coverImg} alt={title} />
-      <h2>
-        <Link to={`/movie/${id}`}>{title}</Link>
-      </h2>
-      <p>{summary}</p>
-      <ul>
-        {genres.map((g) => (
-          <li key={g}>{g}</li>
-        ))}
-      </ul>
+    <div className={styles.movie}>
+      {/* Background Img */}
+      <div className={styles.background}>
+        <img
+          className={styles.Detail_bg}
+          src={background_image_original}
+          alt=""
+        />
+      </div>
+      {/* ShortView (Img, Title, rating, runtime...) */}
+      <div className={styles.show}>
+        <div className={styles.shortView}>
+          {/* Img */}
+          <div className={styles.shortView_Img}>
+            <img src={coverImg} alt={title} />
+          </div>
+          {/* title, rating, runtime, genre */}
+          <div className={styles.shortView_letters}>
+            <h3>{title}</h3>
+            <p>{rating ? `rating: ${rating} / 10` : null}</p>
+            <p>{runtime ? `runtime: ${runtime} (min)` : null}</p>
+            {genres ? (
+              // genre is the 'array'
+              <div>
+                <b>{"genres"}</b>
+                <ul>
+                  {genres.map((g) => (
+                    <li key={g}>{g}</li>
+                  ))}
+                </ul>
+              </div>
+            ) : null}
+          </div>
+        </div>
+
+        {/* Description */}
+        {description_full ? (
+          <div className={styles.descript}>
+            <p>{description_full}</p>
+          </div>
+        ) : null}
+      </div>
     </div>
   );
 }
 
-MovieDetail.protoType = {
-  id: propTypes.number.isRequired,
-  coverImg: propTypes.string.isRequired,
-  title: propTypes.string.isRequired,
-  summary: propTypes.string.isRequired,
-  genres: propTypes.arrayOf(propTypes.string).isRequired,
+MovieDetail.prototypes = {
+  background_image_original: PropTypes.string.isRequired,
+  rating: PropTypes.number,
+  runtime: PropTypes.number,
+  coverImg: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  description_full: PropTypes.string,
+  genres: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 export default MovieDetail;
