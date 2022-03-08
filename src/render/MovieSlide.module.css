@@ -1,6 +1,6 @@
 .movie {
   width: 230px;
-  background-color: whitesmoke;
+  background-color: #fef2d8;
   transition: all 0.4s ease;
   border-radius: 10px;
   overflow: hidden;
@@ -18,7 +18,7 @@
 }
 
 .movieName {
-  text-shadow: 3px 3px #a7b6b8;
+  text-shadow: 3px 3px #ffb89b;
 }
 
 .letters {

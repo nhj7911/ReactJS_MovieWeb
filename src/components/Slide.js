@@ -2,6 +2,9 @@ import { useEffect, useState } from "react";
 import MovieSlide from "../render/MovieSlide";
 import styles from "./Slide.module.css";
 import Load from "../components/Load";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCaretSquareLeft } from "@fortawesome/free-solid-svg-icons";
+import { faCaretSquareRight } from "@fortawesome/free-solid-svg-icons";
 
 // Home Slide show!
 function Slide({ ytsApi }) {
@@ -73,10 +76,10 @@ function Slide({ ytsApi }) {
       {loading ? null : (
         <div className={styles.controller}>
           <button className={styles.left} onClick={onClickL}>
-            left
+            <FontAwesomeIcon icon={faCaretSquareLeft}></FontAwesomeIcon>
           </button>
           <button className={styles.right} onClick={onClickR}>
-            right
+            <FontAwesomeIcon icon={faCaretSquareRight}></FontAwesomeIcon>
           </button>
         </div>
       )}
