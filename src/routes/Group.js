@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import MovieGroup from "../render/MovieGroup";
 import React from "react";
 import Load from "../components/Load";
+import styles from "./Group.module.css";
 
 const List_arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
@@ -29,11 +30,11 @@ function Group() {
   }, [group, page]);
 
   return (
-    <div>
+    <div className={styles.container}>
       {loading ? (
         <Load />
       ) : (
-        <div>
+        <div className={styles.movies}>
           {movies.map((movie) => (
             <MovieGroup
               key={movie.id}
@@ -50,8 +51,8 @@ function Group() {
       )}
       {/* pagenaiton */}
       {loading ? null : (
-        <div>
-          <div>
+        <div className={styles.footer}>
+          <div className={styles.list}>
             {List_arr.map((lst) => {
               return (
                 <Link key={lst} to={`/page/${group}/${lst}`}>

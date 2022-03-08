@@ -1,20 +1,21 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import React from "react";
+import styles from "./MovieGroup.module.css";
 
 // 그룹별 영화 component
 function MovieGroup({ id, coverImg, title, rating, runtime, year, summary }) {
   return (
-    <div>
-      <div>
+    <div className={styles.movie}>
+      <div className={styles.show}>
         {/* img */}
-        <div>
+        <div className={styles.Img}>
           <img src={coverImg} alt={title} />
         </div>
         {/* content */}
-        <div>
+        <div className={styles.letters}>
           {/* 제목 link to detail */}
-          <div>
+          <div className={styles.title}>
             <h3>
               <Link to={`/movie/${id}`}>
                 {title.length > 35 ? `${title.slice(0, 35)}...` : title}
